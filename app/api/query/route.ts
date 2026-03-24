@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     const { prompt } = await req.json();
 
     // --- 1. GUARDRAIL CHECK ---
-    const guardrailModel = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+    const guardrailModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
     const guardrailPrompt = `
       Determine if the following user query is related to business data (orders, deliveries, billing, products, customers, payments, journal entries, plants).
       If it is related, return "VALID".
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     }
 
     // --- 2. GENERATE CYPHER ---
-    const cypherModel = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+    const cypherModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
     const cypherInstruction = `
       You are a Neo4j Cypher expert. Convert the user's natural language into a valid Cypher query for the following schema:
       
@@ -106,7 +106,7 @@ export async function POST(req: NextRequest) {
     });
 
     // --- 5. GENERATE NATURAL LANGUAGE ANSWER ---
-    const answerModel = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+    const answerModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
     const answerPrompt = `
       User Question: "${prompt}"
       Neo4j Results (JSON): ${JSON.stringify(rawData).substring(0, 4000)}
