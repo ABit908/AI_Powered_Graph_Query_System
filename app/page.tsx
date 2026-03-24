@@ -26,7 +26,7 @@ export default function GraphPage() {
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [isChatMinimized, setIsChatMinimized] = useState(false);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-  const fgRef = useRef<any>();
+  const fgRef = useRef<any>(null);
 
   useEffect(() => {
     const handleResize = () => {
