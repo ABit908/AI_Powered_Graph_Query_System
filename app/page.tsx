@@ -18,11 +18,23 @@ interface Node {
   [key: string]: any;
 }
 
+interface Link {
+  source: string | any;
+  target: string | any;
+  label?: string;
+  [key: string]: any;
+}
+
+interface GraphData {
+  nodes: Node[];
+  links: Link[];
+}
+
 export default function GraphPage() {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [graphData, setGraphData] = useState({ nodes: [], links: [] });
+  const [graphData, setGraphData] = useState<GraphData>({ nodes: [], links: [] });
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [isChatMinimized, setIsChatMinimized] = useState(false);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
