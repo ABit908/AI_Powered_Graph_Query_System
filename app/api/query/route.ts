@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
     // --- 4. TRANSFORM FOR VISUALIZATION ---
     const nodes: any[] = [];
     const links: any[] = [];
-    const nodeIds = new Set();
+    const nodeIds = new Set<string>();
     const rawData: any[] = [];
 
     neo4jResult.records.forEach(record => {
